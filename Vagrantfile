@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
   config.vm.hostname =  "measurebox"
   config.vm.box = "arkmetrica/otter"
-  config.vm.box_version = "0.0.3"
+  config.vm.box_version = "0.0.1"
   config.vm.network "public_network", auto_config: false
   config.vm.synced_folder "./", "/vagrant", owner: 'vagrant', group: 'vagrant', mount_options: ['dmode=775,fmode=664'], automount: true
   config.vm.provider "virtualbox" do |vb|
