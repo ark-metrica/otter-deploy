@@ -10,8 +10,8 @@ Vagrant.configure("2") do |config|
     vb.name = "measurebox"
     vb.gui = true
     vb.customize ["modifyvm", :id, "--vram", "128"]
-    vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]  # "vboxvga"
-    vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+    vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]  # vmsvga,vboxvga
+    vb.customize ["modifyvm", :id, "--accelerate3d", "off"] # on,off 
     vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     vb.memory = "6144"  #"8192"
   end
