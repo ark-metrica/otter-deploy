@@ -89,7 +89,7 @@ stage:
     experiment_positions:
         solarsim: [200, 250]
         eqe: [800, 250]
-    custom_positions: {"Load Position": [400, 350], "Test spot A": [88.54241], "Midway": [62.5], "Offline Position": [120]}
+    custom_positions: {"post-home": [550, 337.644], "load/unload": [100,337.6444]}
 
 # i-v-t measurement settings
 ivt:
