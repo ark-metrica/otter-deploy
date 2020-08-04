@@ -43,7 +43,7 @@ smu:
     two_wire: false
 
 solarsim:
-    uri: wavelabs://127.0.0.1:3334
+    uri: wavelabs://0.0.0.0:3334
 #    spectral_calibration: !include example_solarsim_cal.yaml
 
 # lock-in amplifier
@@ -89,7 +89,7 @@ stage:
     experiment_positions:
         solarsim: [200, 250]
         eqe: [800, 250]
-    custom_positions: {"post-home": [550, 337.644], "load/unload": [100,337.6444]}
+    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 350]}
 
 # i-v-t measurement settings
 ivt:
