@@ -24,7 +24,7 @@ network:
     live_data_uri_5: "http://127.0.0.1:8055/"
 
 visa:
-    visa_lib: '@py'
+    visa_lib: "@py"
 
 # stage and mux controller
 controller:
@@ -36,7 +36,7 @@ smu:
     address: ASRL/dev/ttyUSB1::INSTR
     baud: 57600
     # \r\n = <CR+LF>
-    terminator: '\r\n'
+    terminator: "\n"
     # if front terminals is false, use rear terminals
     front_terminals: false
     # if 2 wire is false, use 4 wire
@@ -49,13 +49,13 @@ solarsim:
 # lock-in amplifier
 lia:
     address: ASRL/dev/ttyUSB0::INSTR
-    terminator: '\r'
+    terminator: "\r"
     baud: 9600
     output_interface: 0
 
 monochromator:
     address: ASRL/dev/ttyUSB2::INSTR
-    terminator: '\r'
+    terminator: "\r"
     baud: 9600
     grating_change_wls: [1200]
     filter_change_wls: [370, 640, 715, 765]
@@ -63,7 +63,7 @@ monochromator:
 # LED power supply unit
 psu:
     address: TCPIP0::192.168.1.235::INSTR
-    terminator: '\r'
+    terminator: "\r"
     baud: 9600
     ch1_voltage: 30
     ch2_voltage: 30
@@ -87,9 +87,9 @@ stage:
     # approx mm/s
     speed: 29
     experiment_positions:
-        solarsim: [200, 250]
-        eqe: [800, 250]
-    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 350]}
+        solarsim: [535, 185]
+        eqe: [153, 136]
+    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 337.6444], "solarsim": [535, 185], "eqe": [53, 136]}
 
 # i-v-t measurement settings
 ivt:
@@ -102,10 +102,10 @@ ivt:
     voltage_beyond_isc: 0.1
 
 substrates:
-    # list of number of substrates along each available axis e.g. rows,cols
-    number: [5, 4]
+    # list of number of substrates along each available axis e.g. x direction, y direction
+    number: [4, 5]
     # spacing in mm between substrate centers along each available axis
-    spacing: [35, 29]
+    spacing: [35, -29]
     # List of available pixel layout names. Additional info about each layout is given
     # it's named sub-section in the "layouts" sub-section below.
     layout_names: [6px_1in]
@@ -127,9 +127,9 @@ substrates:
             # [[pixel1_x, pixel1_y], [pixel2_x, pixel2_y], ...]
             # There should be a pixel position vector for every force pin on the adpater pcb, even
             # for pixels that are unused. Unused pixels can set to [0, ...].
-            positions: [[-5, -5], [-5, 5], [0, -5], [0, 5], [5, -5], [5, 5]]
+            positions: [[-2.925, -5.97], [-2.925, 0], [-2.925, 5.97], [2.925, -5.97], [2.925, 0], [2.925, 5.97]]
             # list of areas in cm^2 of each pixel on a substrate
-            areas: [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+            areas: [0.09, 0.09, 0.09, 0.09, 0.09, 0.09]
 
         4px_30mm:
             pcb_name: 6px_30mm_pcb
