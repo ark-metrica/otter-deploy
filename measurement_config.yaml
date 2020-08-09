@@ -83,13 +83,13 @@ stage:
     # for example: [[],[62.5,Infinity]] means all values in X are okay, but anyplace beyond 62.5mm in Y is invalid
     # [[],[]] means no limits for either axis
     # the final field contains extra info for controlling the stage, for example "otter" tells the system to use a special homing procedure specific to one hardware setup
-    uri: us://875,375/6400/[[],[0,70]]/otter
+    uri: us://875,375/6400/[[],[0,65]]/otter
     # approx mm/s
     speed: 29
     experiment_positions:
-        solarsim: [535, 185]
-        eqe: [153, 136]
-    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 337.6444], "solarsim": [535, 185], "eqe": [53, 136]}
+        solarsim: [628, 180]
+        eqe: [147, 131.5]
+    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 350], "solarsim": [628, 180], "eqe": [147, 131.5]}
 
 # i-v-t measurement settings
 ivt:
