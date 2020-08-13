@@ -68,10 +68,9 @@ psu:
     ch1_voltage: 30
     ch2_voltage: 30
     ch3_voltage: 5
-    calibration:
-        # currents in amps
-        max_current: 1
-        current_step: 0.1
+    ch1_ocp : 0.7
+    ch2_ocp : 0.7
+    ch3_ocp : 0.7
 
 stage:
     # stage connection URI
