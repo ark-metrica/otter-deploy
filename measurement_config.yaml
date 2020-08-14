@@ -65,12 +65,12 @@ psu:
     address: TCPIP0::192.168.1.235::INSTR
     terminator: "\r"
     baud: 9600
-    ch1_voltage: 30
-    ch2_voltage: 30
-    ch3_voltage: 5
+    ch1_voltage: 3.9
+    ch2_voltage: 1.9
+    ch3_voltage: 0
     ch1_ocp : 0.7
     ch2_ocp : 0.7
-    ch3_ocp : 0.7
+    ch3_ocp : 0.0
 
 stage:
     # stage connection URI
@@ -86,9 +86,9 @@ stage:
     # approx mm/s
     speed: 29
     experiment_positions:
-        solarsim: [628, 180]
+        solarsim: [628, 176]
         eqe: [147.5, 128.50]
-    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 350], "solarsim": [628, 180], "eqe": [147.75, 129.25]}
+    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 350], "solarsim": [628, 176], "eqe": [147.75, 129.25], "EQE Cal PD": [271.75, 107.25]}
 
 # i-v-t measurement settings
 ivt:
