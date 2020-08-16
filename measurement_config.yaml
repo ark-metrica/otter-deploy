@@ -18,7 +18,14 @@
 plots:
     invert_voltage: true
     invert_current: false
-    
+
+mppt:
+    presets:
+        - "gd://"  # gradient descent algorithm with default parameters
+        - "basic://" # basic tracking algorithm (alternating periods of exploration and dwell at vmpp) with default parameters
+        - "gd://10:0.0001:10" # gd://alpha:min_step:NPLC --> alpha is the learning rate, min_step is the smallest possible voltage step, larger NPLC means slower, more accurate measurements
+        - "basic://7:10" # basic://degrees:dwell_time --> larger degrees means wider exploration, larger dwell_time means longer dwell periods
+
 network:
     MQTTHOST: "127.0.0.1"
     live_data_uri_1: "http://127.0.0.1:8051/"
@@ -48,7 +55,7 @@ smu:
 
 solarsim:
     uri: wavelabs://0.0.0.0:3334
-    defautl_recipe: AM1.5G_60min
+    recipes: ["AM1.5G_60min", "AM1.5G"]
 #    spectral_calibration: !include example_solarsim_cal.yaml
 
 # lock-in amplifier
