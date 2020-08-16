@@ -14,7 +14,11 @@
 # with open("example_config.yaml", "r") as f:
 #     config = yaml.load(f, Loader=yaml.FullLoader)  
 
-
+# default start-up values for the plot inversion switches
+plots:
+    invert_voltage: true
+    invert_current: false
+    
 network:
     MQTTHOST: "127.0.0.1"
     live_data_uri_1: "http://127.0.0.1:8051/"
@@ -44,6 +48,7 @@ smu:
 
 solarsim:
     uri: wavelabs://0.0.0.0:3334
+    defautl_recipe: AM1.5G_60min
 #    spectral_calibration: !include example_solarsim_cal.yaml
 
 # lock-in amplifier
@@ -87,8 +92,8 @@ stage:
     speed: 29
     experiment_positions:
         solarsim: [628, 176]
-        eqe: [147.5, 128.50]
-    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 350], "solarsim": [628, 176], "eqe": [147.75, 129.25], "EQE Cal PD": [271.75, 107.25]}
+        eqe: [147.25, 129.50]
+    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 350], "solarsim": [628, 176], "eqe": [147.25, 129.50], "EQE Cal PD": [271.75, 107.25]}
 
 # i-v-t measurement settings
 ivt:
@@ -107,7 +112,7 @@ substrates:
     spacing: [-35, 29]
     # List of available pixel layout names. Additional info about each layout is given
     # it's named sub-section in the "layouts" sub-section below.
-    layout_names: [6px_1in]
+    layout_names: ["6px_1in", "PD PCB", "RTD PCB", "Empty"]
     # for clients that only accept one layout, use this layout
     active_layout: 6px_1in
 
