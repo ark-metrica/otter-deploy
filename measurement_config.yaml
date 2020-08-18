@@ -49,7 +49,7 @@ smu:
     address: ASRL/dev/ttyUSB1::INSTR
     baud: 57600
     # \r\n = <CR+LF>
-    terminator: "\n"
+    terminator: "\r"
     # if front terminals is false, use rear terminals
     front_terminals: false
     # if 2 wire is false, use 4 wire
