@@ -66,6 +66,7 @@ lia:
     terminator: "\r"
     baud: 9600
     output_interface: 0
+    auto_gain_method: user
 
 monochromator:
     address: ASRL/dev/ttyUSB2::INSTR
