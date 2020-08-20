@@ -23,7 +23,7 @@ mppt:
     presets:
         - "gd://"  # gradient descent algorithm with default parameters
         - "basic://" # basic tracking algorithm (alternating periods of exploration and dwell at vmpp) with default parameters
-        - "gd://10:0.0001:10" # gd://alpha:min_step:NPLC --> alpha is the learning rate, min_step is the smallest possible voltage step, larger NPLC means slower, more accurate measurements
+        - "gd://1:0.0001:10" # gd://alpha:min_step:NPLC --> alpha is the learning rate, min_step is the smallest possible voltage step, larger NPLC means slower, more accurate measurements
         - "basic://7:10" # basic://degrees:dwell_time --> larger degrees means wider exploration, larger dwell_time means longer dwell periods
 
 network:
@@ -66,7 +66,7 @@ lia:
     terminator: "\r"
     baud: 9600
     output_interface: 0
-    auto_gain_method: user
+    auto_gain_method: instr  # user or instr
 
 monochromator:
     address: ASRL/dev/ttyUSB2::INSTR
@@ -77,15 +77,17 @@ monochromator:
 
 # LED power supply unit
 psu:
-    address: TCPIP0::192.168.1.235::INSTR
+    #address: TCPIP0::192.168.1.235::INSTR
+    #address: TCPIP0::92.168.1.235::INSTR
+    address: null
     terminator: "\r"
     baud: 9600
-    ch1_voltage: 3.9
-    ch2_voltage: 1.9
-    ch3_voltage: 0
-    ch1_ocp : 0.7
-    ch2_ocp : 0.7
-    ch3_ocp : 0.0
+    ch1_voltage: 3.9    # 30V limit
+    ch2_voltage: 12.0   # 30V limit
+    ch3_voltage: 1.9    # 5V limit
+    ch1_ocp : 0.7   # 3A limit
+    ch2_ocp : 2.75  # 3A limit
+    ch3_ocp : 0.7   # 3A limit
 
 stage:
     # stage connection URI
