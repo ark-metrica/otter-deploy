@@ -23,7 +23,7 @@ mppt:
     presets:
         - "gd://"  # gradient descent algorithm with default parameters
         - "basic://" # basic tracking algorithm (alternating periods of exploration and dwell at vmpp) with default parameters
-        - "gd://1:0.0001:10" # gd://alpha:min_step:NPLC --> alpha is the learning rate, min_step is the smallest possible voltage step, larger NPLC means slower, more accurate measurements
+        - "gd://0.2:0.00005:10" # gd://alpha:min_step:NPLC --> alpha is the learning rate, min_step is the smallest possible voltage step, larger NPLC means slower, more accurate measurements
         - "basic://7:10" # basic://degrees:dwell_time --> larger degrees means wider exploration, larger dwell_time means longer dwell periods
 
 network:
@@ -104,8 +104,8 @@ stage:
     speed: 29
     experiment_positions:
         solarsim: [628, 176]
-        eqe: [147.25, 129.50]
-    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 350], "solarsim": [628, 176], "eqe": [147.25, 129.50], "EQE Cal PD": [271.75, 107.25]}
+        eqe: [144.75, 127.50]
+    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 350], "solarsim": [628, 176], "eqe": [144.75, 127.50], "EQE Cal PD": [271.75, 107.25]}
 
 # i-v-t measurement settings
 ivt:
