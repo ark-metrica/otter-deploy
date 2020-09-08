@@ -67,6 +67,7 @@ lia:
     baud: 9600
     output_interface: 0
     auto_gain_method: instr  # user or instr
+    ratio: true  # use ratio of signal / aux_in_1 for EQE calculation
 
 monochromator:
     address: ASRL/dev/ttyUSB2::INSTR
@@ -77,9 +78,7 @@ monochromator:
 
 # LED power supply unit
 psu:
-    #address: TCPIP0::192.168.1.235::INSTR
-    #address: TCPIP0::92.168.1.235::INSTR
-    address: null
+    address: TCPIP0::192.168.1.235::INSTR
     terminator: "\r"
     baud: 9600
     ch1_voltage: 3.9    # 30V limit
