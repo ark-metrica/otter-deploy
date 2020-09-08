@@ -67,7 +67,7 @@ lia:
     baud: 9600
     output_interface: 0
     auto_gain_method: instr  # user or instr
-    ratio: true  # use ratio of signal / aux_in_1 for EQE calculation
+    ratio: true  # true to use AUX1 input signal to account for lamp output drift
 
 monochromator:
     address: ASRL/dev/ttyUSB2::INSTR
@@ -79,13 +79,14 @@ monochromator:
 # LED power supply unit
 psu:
     address: TCPIP0::192.168.1.235::INSTR
+    #address: null
     terminator: "\r"
     baud: 9600
     ch1_voltage: 3.9    # 30V limit
-    ch2_voltage: 12.0   # 30V limit
+    ch2_voltage: 1.0  # 30V limit
     ch3_voltage: 1.9    # 5V limit
     ch1_ocp : 0.7   # 3A limit
-    ch2_ocp : 2.75  # 3A limit
+    ch2_ocp : 0.1  # 3A limit
     ch3_ocp : 0.7   # 3A limit
 
 stage:
