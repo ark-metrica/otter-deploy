@@ -102,15 +102,18 @@ stage:
     # [[],[]] means no limits for either axis
     # the final field contains extra info for controlling the stage, for example "otter" tells the system to use a special homing procedure specific to one hardware setup
     uri: us://875,375/6400/[[],[0,62]]/otter
-    # approx mm/s
+    # approx mm/s (used for timing calculations only, does not actually set speed)
     speed: 29
+    # defines the center positions of the substrate array for the acutal measurement routines (used in calculating the position to move to for each pixel)
     experiment_positions:
         solarsim: [628, 176]
         eqe: [145.325, 127.25]
-    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 350], "solarsim": [628, 176], "eqe": [145.325, 127.25], "EQE Cal PD": [264.0, 195.0]}
+    # list of locations the gui should show, just to make it easier to go to some predefined locations (experiment_positions will automatically be shown in the list)
+    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 350], "EQE Cal PD": [264.0, 195.0]}
 
-# i-v-t measurement settings
-ivt:
+# controls for how "smart mode" works
+smart_mode:
+    enabled: false
     # when using smart mode, start scan 1 and end scan 2 this many percent higher than Voc
     # bigger numbers here give better fitting for series resistance at an incresed danger of pushing too much current through the device
     percent_beyond_voc: 25
