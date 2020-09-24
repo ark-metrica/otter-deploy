@@ -130,13 +130,13 @@ substrates:
     # for clients that only accept one layout, use this layout
     active_layout: 6px_1in
 
-    # pixel layout info
+    # this section contains info that describes the device layouts that may be used in the system
     layouts:
-        # layout name
+        # otter's default device layout definition
         6px_1in:
-            # pcb adapter name
+            # which of the the (changeable) PCB adapter boards are in use for this layout
             pcb_name: 6px_1in_pcb
-            # pcb pin numbers to use
+            # list of pixel numbers that should be enabled for this layout
             pixels: [1, 2, 3, 4, 5, 6]
             # List of position vectors of each pixel in use on each substrate.
             # Positions are given in mm relative to the substrate center.
@@ -144,41 +144,35 @@ substrates:
             # vectors, e.g. for an x,y stage the list would be formatted as:
             # [[pixel1_x, pixel1_y], [pixel2_x, pixel2_y], ...]
             # There should be a pixel position vector for every force pin on the adpater pcb, even
-            # for pixels that are unused. Unused pixels can set to [0, ...].
+            # for pixels that are unused. Unused pixels can be set to [0, ...].
             positions: [[-2.925, -5.97], [-2.925, 0], [-2.925, 5.97], [2.925, -5.97], [2.925, 0], [2.925, 5.97]]
             # list of areas in cm^2 of each pixel on a substrate
             areas: [0.09, 0.09, 0.09, 0.09, 0.09, 0.09]
 
-        largearea:
-            # pcb adapter name
+        # PCB populated with 6x Vishay BPW34 Silicon PIN Photodiodes
+        PD PCB:
             pcb_name: 6px_1in_pcb
-            # pcb pin numbers to use
+            pixels: [1, 2, 3, 4, 5, 6]
+            positions: [[-2.925, -5.97], [-2.925, 0], [-2.925, 5.97], [2.925, -5.97], [2.925, 0], [2.925, 5.97]]
+            areas: [0.075, 0.075, 0.075, 0.075, 0.075, 0.075]
+        
+        # PCB populated with 1x PT1000 RTD (temperature sensor)
+        RTD PCB:
+            pcb_name: 6px_1in_pcb
+            pixels: [2]
+            positions: [[0, 0]]
+            areas: [0.0]
+
+        largearea:
+            pcb_name: 6px_1in_pcb
             pixels: [1]
-            # List of position vectors of each pixel in use on each substrate.
-            # Positions are given in mm relative to the substrate center.
-            # If the positions are multi-axis, the positions of each pixel in the list are given as
-            # vectors, e.g. for an x,y stage the list would be formatted as:
-            # [[pixel1_x, pixel1_y], [pixel2_x, pixel2_y], ...]
-            # There should be a pixel position vector for every force pin on the adpater pcb, even
-            # for pixels that are unused. Unused pixels can set to [0, ...].
             positions: [[0,0]]
-            # list of areas in cm^2 of each pixel on a substrate
             areas: [0.95]
             
         Si:
-            # pcb adapter name
             pcb_name: 6px_1in_pcb
-            # pcb pin numbers to use
             pixels: [1]
-            # List of position vectors of each pixel in use on each substrate.
-            # Positions are given in mm relative to the substrate center.
-            # If the positions are multi-axis, the positions of each pixel in the list are given as
-            # vectors, e.g. for an x,y stage the list would be formatted as:
-            # [[pixel1_x, pixel1_y], [pixel2_x, pixel2_y], ...]
-            # There should be a pixel position vector for every force pin on the adpater pcb, even
-            # for pixels that are unused. Unused pixels can set to [0, ...].
             positions: [[0,0]]
-            # list of areas in cm^2 of each pixel on a substrate
             areas: [1.0]
         
         Empty:
@@ -187,11 +181,11 @@ substrates:
             positions: []
             areas: []
 
-    # pcb adapter info
+    # this section describes the (changeable) PCB that holds the gold spring loaded contact pins
     adapters:
         6px_1in_pcb:
-            # number of available pixels per pcb #TODO: get rid of this
-            pcb_contact_pads: 6
+            # number of available pixels per pcb
+            pcb_contact_pads: 6   # TODO: get rid of this
             # pcb adapter board idn resistor in Ohms
             pcb_resistor: 0
 
