@@ -17,13 +17,13 @@
 # default start-up values for the plot inversion switches
 plots:
     invert_voltage: true
-    invert_current: false
+    invert_current: true
 
 mppt:
     presets:
+        - "gd://0.2:0.00005:10" # gd://alpha:min_step:NPLC --> alpha is the learning rate, min_step is the smallest possible voltage step, larger NPLC means slower, more accurate measurements
         - "gd://"  # gradient descent algorithm with default parameters
         - "basic://" # basic tracking algorithm (alternating periods of exploration and dwell at vmpp) with default parameters
-        - "gd://0.2:0.00005:10" # gd://alpha:min_step:NPLC --> alpha is the learning rate, min_step is the smallest possible voltage step, larger NPLC means slower, more accurate measurements
         - "basic://7:10" # basic://degrees:dwell_time --> larger degrees means wider exploration, larger dwell_time means longer dwell periods
 
 network:
@@ -54,10 +54,12 @@ smu:
     front_terminals: false
     # if 2 wire is false, use 4 wire
     two_wire: false
+    # system-wide current limit (for protection)
+    global_current_limit: 0.1
 
 solarsim:
     uri: wavelabs://0.0.0.0:3334
-    recipes: ["AM1.5G_60min", "AM1.5G"]
+    recipes: ["tandemrecipe", "AM1.5G_60min", "AM1.5G"]
 #    spectral_calibration: !include example_solarsim_cal.yaml
 
 # lock-in amplifier
@@ -104,8 +106,8 @@ stage:
     speed: 29
     experiment_positions:
         solarsim: [628, 176]
-        eqe: [144.75, 127.50]
-    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 350], "solarsim": [628, 176], "eqe": [144.75, 127.50], "EQE Cal PD": [271.75, 107.25]}
+        eqe: [145.325, 127.25]
+    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 350], "solarsim": [628, 176], "eqe": [145.325, 127.25], "EQE Cal PD": [264.0, 195.0]}
 
 # i-v-t measurement settings
 ivt:
@@ -124,7 +126,7 @@ substrates:
     spacing: [-35, 29]
     # List of available pixel layout names. Additional info about each layout is given
     # it's named sub-section in the "layouts" sub-section below.
-    layout_names: ["6px_1in", "PD PCB", "RTD PCB", "Empty"]
+    layout_names: ["6px_1in", "largearea", "PD PCB", "RTD PCB", "Si", "Empty"]
     # for clients that only accept one layout, use this layout
     active_layout: 6px_1in
 
@@ -147,23 +149,51 @@ substrates:
             # list of areas in cm^2 of each pixel on a substrate
             areas: [0.09, 0.09, 0.09, 0.09, 0.09, 0.09]
 
-        PD_pcb:
+        largearea:
+            # pcb adapter name
             pcb_name: 6px_1in_pcb
-            pixels: [1, 2, 3, 4, 5, 6]
-            positions: [[-2.925, -5.97], [-2.925, 0], [-2.925, 5.97], [2.925, -5.97], [2.925, 0], [2.925, 5.97]]
-            areas: [0.0745, 0.0745, 0.0745, 0.0745, 0.0745, 0.0745]
+            # pcb pin numbers to use
+            pixels: [1]
+            # List of position vectors of each pixel in use on each substrate.
+            # Positions are given in mm relative to the substrate center.
+            # If the positions are multi-axis, the positions of each pixel in the list are given as
+            # vectors, e.g. for an x,y stage the list would be formatted as:
+            # [[pixel1_x, pixel1_y], [pixel2_x, pixel2_y], ...]
+            # There should be a pixel position vector for every force pin on the adpater pcb, even
+            # for pixels that are unused. Unused pixels can set to [0, ...].
+            positions: [[0,0]]
+            # list of areas in cm^2 of each pixel on a substrate
+            areas: [0.95]
+            
+        Si:
+            # pcb adapter name
+            pcb_name: 6px_1in_pcb
+            # pcb pin numbers to use
+            pixels: [1]
+            # List of position vectors of each pixel in use on each substrate.
+            # Positions are given in mm relative to the substrate center.
+            # If the positions are multi-axis, the positions of each pixel in the list are given as
+            # vectors, e.g. for an x,y stage the list would be formatted as:
+            # [[pixel1_x, pixel1_y], [pixel2_x, pixel2_y], ...]
+            # There should be a pixel position vector for every force pin on the adpater pcb, even
+            # for pixels that are unused. Unused pixels can set to [0, ...].
+            positions: [[0,0]]
+            # list of areas in cm^2 of each pixel on a substrate
+            areas: [1.0]
+        
+        Empty:
+            pcb_name: 6px_1in_pcb
+            pixels: []
+            positions: []
+            areas: []
 
     # pcb adapter info
     adapters:
         6px_1in_pcb:
-            # number of available pixels per pcb
+            # number of available pixels per pcb #TODO: get rid of this
             pcb_contact_pads: 6
             # pcb adapter board idn resistor in Ohms
             pcb_resistor: 0
-
-        6px_30mm_pcb:
-            pcb_contact_pads: 6
-            pcb_resistor: 0    
 
 # miscellaneous reference data
 reference:
