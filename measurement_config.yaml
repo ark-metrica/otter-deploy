@@ -98,6 +98,7 @@ psu:
     ch3_ocp : 0.7        # 870 nm LED (3A channel limit)
 
 stage:
+    enabled: true
     # stage connection URI
     # tells the system how to talk to the stage.
     # format = controller-type://list,of,expected,travel,lengths,in,mm/steps_per_mm/list of lists of keepout zones per axis/extra_info
