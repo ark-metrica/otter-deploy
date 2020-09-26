@@ -52,6 +52,7 @@ controller:
 # source-measure unit(s)
 # set FLOW CONTROL to XON-XOFF
 smu:
+    enabled: true
     address: ASRL/dev/ttyUSB1::INSTR
     baud: 57600
     # \r\n = <CR+LF>
@@ -64,12 +65,14 @@ smu:
     global_current_limit: 0.1
 
 solarsim:
+    enabled: true
     uri: wavelabs://0.0.0.0:3334
     recipes: ["tandemrecipe", "AM1.5G_60min", "AM1.5G"]
 #    spectral_calibration: !include example_solarsim_cal.yaml
 
 # lock-in amplifier
 lia:
+    enabled: true
     address: ASRL/dev/ttyUSB0::INSTR
     terminator: "\r"
     baud: 9600
@@ -78,6 +81,7 @@ lia:
     ratio: true  # true to use AUX1 input signal to account for lamp output drift
 
 monochromator:
+    enabled: true
     address: ASRL/dev/ttyUSB2::INSTR
     terminator: "\r"
     baud: 9600
@@ -86,6 +90,7 @@ monochromator:
 
 # LED power supply unit (Rigol DP832)
 psu:
+    enabled: true
     address: TCPIP0::192.168.1.235::INSTR
     #address: null
     terminator: "\r"
@@ -137,16 +142,14 @@ substrates:
     number: [4, 5]
     # spacing in mm between substrate centers along each available axis
     spacing: [-35, 29]
-    # List of available pixel layout names. Additional info about each layout is given
-    # it's named sub-section in the "layouts" sub-section below.
-    layout_names: ["6px_1in", "largearea", "PD PCB", "RTD PCB", "Si", "Empty"]
-    # for clients that only accept one layout, use this layout
-    active_layout: 6px_1in
 
     # this section contains info that describes the device layouts that may be used in the system
+    # the first one listed here is taken to be the default
     layouts:
         # otter's default device layout definition
         6px_1in:
+            # enabled means the layout is something that can be selected in the GUI
+            enabled: true
             # which of the the (changeable) PCB adapter boards are in use for this layout
             pcb_name: 6px_1in_pcb
             # list of pixel numbers that should be enabled for this layout
@@ -164,6 +167,7 @@ substrates:
 
         # PCB populated with 6x Vishay BPW34 Silicon PIN Photodiodes
         PD PCB:
+            enabled: true
             pcb_name: 6px_1in_pcb
             pixels: [1, 2, 3, 4, 5, 6]
             positions: [[-2.925, -5.97], [-2.925, 0], [-2.925, 5.97], [2.925, -5.97], [2.925, 0], [2.925, 5.97]]
@@ -171,24 +175,28 @@ substrates:
         
         # PCB populated with 1x PT1000 RTD (temperature sensor)
         RTD PCB:
+            enabled: true
             pcb_name: 6px_1in_pcb
             pixels: [2]
             positions: [[0, 0]]
             areas: [0.0]
 
         largearea:
+            enabled: true
             pcb_name: 6px_1in_pcb
             pixels: [1]
             positions: [[0,0]]
             areas: [0.95]
             
         Si:
+            enabled: true
             pcb_name: 6px_1in_pcb
             pixels: [1]
             positions: [[0,0]]
             areas: [1.0]
         
         Empty:
+            enabled: true
             pcb_name: 6px_1in_pcb
             pixels: []
             positions: []
