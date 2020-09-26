@@ -116,7 +116,10 @@ stage:
         solarsim: [628, 176]
         eqe: [145.325, 127.25]
     # list of locations the gui should show, just to make it easier to go to some predefined locations (experiment_positions will automatically be shown in the list)
-    custom_positions: {"post-home": [550, 337.644], "load/unload": [100, 350], "EQE Cal PD": [264.0, 195.0]}
+    custom_positions:
+        post-home: [550, 337.644]
+        load/unload: [100, 350]
+        EQE Cal PD: [264.0, 195.0]
 
 # controls for how "smart mode" works
 smart_mode:
