@@ -12,7 +12,13 @@
 # yaml.add_constructor("!include", yaml_include)  
 # 
 # with open("example_config.yaml", "r") as f:
-#     config = yaml.load(f, Loader=yaml.FullLoader)  
+#     config = yaml.load(f, Loader=yaml.FullLoader)
+
+# controls automatic gui configuration saving every time the run button is pressed
+config_autosave:
+    enabled: true
+    # relative paths are relative to the user's home dir
+    path: runconfigs
 
 # default start-up values for the plot inversion switches
 plots:
